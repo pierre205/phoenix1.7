@@ -1,5 +1,6 @@
 defmodule MoningWeb.Router do
   use MoningWeb, :router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -17,7 +18,7 @@ defmodule MoningWeb.Router do
   scope "/", MoningWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", MoningWeb.HomeLive
   end
 
   # Other scopes may use custom stacks.
