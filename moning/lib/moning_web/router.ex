@@ -19,6 +19,7 @@ defmodule MoningWeb.Router do
     pipe_through :browser
 
     live "/", MoningWeb.HomeLive
+
   end
 
   # Other scopes may use custom stacks.

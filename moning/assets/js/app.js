@@ -1,4 +1,3 @@
-
 import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
@@ -19,7 +18,6 @@ window.liveSocket = liveSocket
 document.addEventListener('DOMContentLoaded', function() {
   const el = document.getElementById("container");
   const data = JSON.parse(el.dataset.serie);
-
   // Extraire les années distinctes à partir des données
   const years = [...new Set(data.map(item => new Date(item.x).getFullYear()))];
 
@@ -86,5 +84,77 @@ document.addEventListener('DOMContentLoaded', function() {
     chart.series[0].update({
       data: filteredData.map(item => item.y)
     });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const el = document.getElementById("container2");
+  const data = JSON.parse(el.dataset.serie);
+  const chart = Highcharts.chart('container2', {
+    chart: {
+      type: 'area',
+      width: 800,
+      height: 600
+    },
+    xAxis: {
+      type: 'category',
+      categories: data.map(item => item.x),
+      labels: {
+        rotation: -45,
+        style: {
+          fontSize: '13px',
+          fontFamily: 'Arial, sans-serif'
+        }
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Nombre de nouveaux portfolios'
+      }
+    },
+    series: [{
+      animation: {
+        duration: 1000,
+        easing: 'linear'
+      },
+      name: 'Date',
+      data: data.map(item => item.y)
+    }]
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const el = document.getElementById("container3");
+  const data = JSON.parse(el.dataset.serie);
+  const chart = Highcharts.chart('container3', {
+    chart: {
+      type: 'area',
+      width: 800,
+      height: 600
+    },
+    xAxis: {
+      type: 'category',
+      categories: data.map(item => item.x),
+      labels: {
+        rotation: -45,
+        style: {
+          fontSize: '13px',
+          fontFamily: 'Arial, sans-serif'
+        }
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Nombre d utilisateurs suivis'
+      }
+    },
+    series: [{
+      animation: {
+        duration: 1000,
+        easing: 'linear'
+      },
+      name: 'Date',
+      data: data.map(item => item.y)
+    }]
   });
 });
